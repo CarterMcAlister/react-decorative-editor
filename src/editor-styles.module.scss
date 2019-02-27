@@ -1,0 +1,72 @@
+.codeEditor {
+    border-top-right-radius: .25rem;
+    border-top-left-radius: .25rem;
+    
+    width: 100%;
+    font-family: Inconsolata,monospace;
+    max-width: 540px;
+    margin-right: auto;
+    margin-left: auto;
+    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: .25rem;
+    -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);
+
+    &Header {
+        padding: 20px;
+        padding-bottom: 5px;
+        font-size: .75em;
+        position: relative;
+
+        border-top-right-radius: .25rem;
+        border-top-left-radius: .25rem;
+    }
+
+    &Dot {
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        position: relative;
+        -webkit-transition: all .25s ease-in-out;
+        transition: all .25s ease-in-out;
+        bottom: 6px;
+        margin-right: 5px;
+        margin-top: 5px;
+
+        &:first-child {
+            background: #ff795d;
+        }
+        &:nth-child(2){
+            background: #f8e71c;
+        }
+        &:nth-child(3){
+            background: #44bfa3;
+        }
+    }
+
+    &Body {
+        padding: 30px;
+        color: #000;
+        font-size: 16px;
+        overflow: hidden;
+        border-bottom-right-radius: .25rem;
+        border-bottom-left-radius: .25rem;
+        display: flex;
+        flex-direction: row;
+    }
+
+    &Contents {
+        
+    }
+
+    &Line {
+        white-space: pre;
+        min-height: 19px;
+    }
+
+    &LineNumber {
+    }
+
+    &LineText {}
+}
