@@ -6,7 +6,7 @@ import editorStyles from './editor-styles.module.scss'
 import TextLine from './text-line'
 
 function DecorativeEditor ({ text, nightMode, speed, cursor }) {
-  // const [editorText, setEditorText] = useState(0)
+   const [editorText, setEditorText] = useState(0)
 
   const lines = text.split(/\r\n|\r|\n/)
 
@@ -25,7 +25,7 @@ function DecorativeEditor ({ text, nightMode, speed, cursor }) {
         </div>
         <div className={editorStyles.codeEditorContents}>
           {lines.map((line, index) =>
-            <TextLine text={line} className={editorStyles.codeEditorLine} key={index+10} doTyping={true} />
+            <TextLine text={line} className={editorStyles.codeEditorLine} key={index+10} speed={100} />
           )}
         </div>
       </div>
