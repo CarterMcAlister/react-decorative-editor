@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 import editorStyles from './editor-styles.module.scss'
-
 import TextLine from './text-line'
 
-function DecorativeEditor ({ text, darkMode, speed, cursor }) {
-  // const [editorText, setEditorText] = useState(0)
-
+function DecorativeEditor ({ text, darkMode, speed, showCursor }) {
   const lines = text.split(/\r\n|\r|\n/)
+  const [renderedLines, setRenderedLines] = useState([lines[0]])
+
+  const addLine = (i) => {
+    if (i < lines.length) {
+      const newLine = lines[i]
+      setRenderedLines([...renderedLines, newLine])
+    }
+  }
 
   return (
     <div className={editorStyles.codeEditor}>
@@ -24,8 +29,8 @@ function DecorativeEditor ({ text, darkMode, speed, cursor }) {
           )}
         </div>
         <div className={editorStyles.codeEditorContents} style={{color: darkMode ? '#fff' : '#000'}}>
-          {lines.map((line, index) =>
-            <TextLine text={line} className={editorStyles.codeEditorLine} key={index+10} speed={100} />
+          {renderedLines.map((line, index) =>
+            <TextLine text={line} className={editorStyles.codeEditorLine} ind={index} key={index + 10} speed={100} addLine={addLine} />
           )}
         </div>
       </div>

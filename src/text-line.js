@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 
-function textLine ({ text, className, speed }) {
+function textLine ({ text, className, speed, addLine, ind }) {
   const [typedText, setTypedText] = useState('')
   const prevTypedText = useRef()
 
@@ -14,6 +14,8 @@ function textLine ({ text, className, speed }) {
 
       if (i >= text.length) {
         clearInterval(doTyping)
+        console.log('addline')
+        addLine(ind)
       }
     }, speed)
 
