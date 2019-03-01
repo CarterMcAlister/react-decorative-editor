@@ -4,13 +4,15 @@ import PropTypes from 'prop-types'
 import editorStyles from './editor-styles.module.scss'
 import TextLine from './text-line'
 
-function DecorativeEditor ({ text, darkMode, speed, showCursor }) {
+function DecorativeEditor ({ text, darkMode, speed, cursor }) {
   const lines = text.split(/\r\n|\r|\n/)
+  const [lineIndex, setLineIndex] = useState(0)
   const [renderedLines, setRenderedLines] = useState([lines[0]])
 
-  const addLine = (i) => {
-    if (i < lines.length) {
-      const newLine = lines[i]
+  const addLine = () => {
+    if (lineIndex < lines.length) {
+      setLineIndex(lineIndex + 1)
+      const newLine = lines[lineIndex]
       setRenderedLines([...renderedLines, newLine])
     }
   }
@@ -30,12 +32,19 @@ function DecorativeEditor ({ text, darkMode, speed, showCursor }) {
         </div>
         <div className={editorStyles.codeEditorContents} style={{color: darkMode ? '#fff' : '#000'}}>
           {renderedLines.map((line, index) =>
-            <TextLine text={line} className={editorStyles.codeEditorLine} ind={index} key={index + 10} speed={100} addLine={addLine} />
+            <TextLine text={line} key={index} speed={speed} addLine={addLine} cursor={cursor} lineIndex={lineIndex} />
           )}
         </div>
       </div>
     </div>
   )
+}
+
+DecorativeEditor.propTypes = {
+  text: PropTypes.string.isRequired,
+  darkMode: PropTypes.bool,
+  speed: PropTypes.number,
+  cursor: PropTypes.bool
 }
 
 export default DecorativeEditor

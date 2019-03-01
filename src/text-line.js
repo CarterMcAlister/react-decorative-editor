@@ -1,26 +1,43 @@
 import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
+import styles from './text-line.module.scss'
 
-function textLine ({ text, className, speed, addLine, ind }) {
+function textLine ({ text, speed, addLine, cursor, lineIndex }) {
   const [typedText, setTypedText] = useState('')
+  const [showCursor, setShowCursor] = useState()
   const prevTypedText = useRef()
+  let hasFocus = document.hasFocus()
+  let i = 0
 
-  useEffect(() => {
-    let i = 0
-    const doTyping = setInterval(() => {
+  const typeCharacter = (doTyping) => {
+    if (hasFocus) {
       const textString = prevTypedText.current + text.charAt(i)
       setTypedText(textString)
       i++
 
       if (i >= text.length) {
         clearInterval(doTyping)
-        console.log('addline')
-        addLine(ind)
+        setShowCursor(false)
+        addLine(lineIndex)
       }
-    }, speed)
+    }
+  }
+
+  const checkFocus = () => {
+    hasFocus = document.hasFocus()
+  }
+
+  useEffect(() => {
+    const doTyping = setInterval(() => typeCharacter(doTyping), speed)
+    setShowCursor(cursor)
+    window.addEventListener('focus', checkFocus)
+    window.addEventListener('blur', checkFocus)
 
     return () => {
       clearInterval(doTyping)
+
+      window.removeEventListener('focus', checkFocus)
+      window.removeEventListener('blur', checkFocus)
     }
   }, [])
 
@@ -29,10 +46,23 @@ function textLine ({ text, className, speed, addLine, ind }) {
   })
 
   return (
-    <div className={className}>
-      {typedText}
+    <div className={styles.text}>
+      <span className={showCursor ? styles.textCursor : ''}>{typedText}</span>
     </div>
   )
+}
+
+textLine.propTypes = {
+  text: PropTypes.string.isRequired,
+  speed: PropTypes.number,
+  addLine: PropTypes.func.isRequired,
+  lineIndex: PropTypes.number,
+  cursor: PropTypes.bool
+}
+
+textLine.defaultProps = {
+  speed: 100,
+  cursor: false
 }
 
 export default textLine
