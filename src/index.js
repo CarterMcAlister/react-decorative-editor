@@ -25,7 +25,7 @@ function DecorativeEditor ({ text, darkMode, speed, cursor }) {
         </div>
         <div className={editorStyles.codeEditorContents} style={{color: darkMode ? '#fff' : '#000'}}>
           {lines.map((line, index) =>
-            <TextLine text={line} className={editorStyles.codeEditorLine} key={index+10} doTyping={true} />
+            <TextLine text={line} className={editorStyles.codeEditorLine} key={index+10} speed={100} />
           )}
         </div>
       </div>
