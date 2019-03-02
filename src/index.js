@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import editorStyles from './editor-styles.module.scss'
@@ -7,8 +7,9 @@ import TextLine from './text-line'
 function DecorativeEditor ({ text, darkMode, speed, cursor }) {
   const lines = text.split(/\r\n|\r|\n/)
   const [lineIndex, setLineIndex] = useState(0)
-  const [renderedLines, setRenderedLines] = useState([lines[0]])
+  const [renderedLines, setRenderedLines] = useState([])
 
+  // Adds a line of the passed text to the editor
   const addLine = () => {
     if (lineIndex < lines.length) {
       setLineIndex(lineIndex + 1)
@@ -16,6 +17,11 @@ function DecorativeEditor ({ text, darkMode, speed, cursor }) {
       setRenderedLines([...renderedLines, newLine])
     }
   }
+
+  // Add the first line when the component loads
+  useEffect(() => {
+    addLine()
+  }, [])
 
   return (
     <div className={editorStyles.codeEditor}>
