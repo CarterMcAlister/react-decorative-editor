@@ -3,8 +3,7 @@
     border-top-left-radius: .25rem;
     
     width: 100%;
-    font-family: Inconsolata,monospace;
-    max-width: 540px;
+    font-family: monospace;
     margin-right: auto;
     margin-left: auto;
     border-bottom-right-radius: .25rem;
@@ -66,6 +65,7 @@
     }
 
     &LineNumber {
+        height: 19px;
     }
 
     &NumberCol {

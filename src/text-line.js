@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import styles from './text-line.module.scss'
 
-function textLine ({ text, speed, addLine, cursor, lineIndex }) {
+function TextLine ({ text, speed, addLine, cursor, lineIndex }) {
   const [typedText, setTypedText] = useState('')
   const [showCursor, setShowCursor] = useState()
   const prevTypedText = useRef()
@@ -10,14 +10,13 @@ function textLine ({ text, speed, addLine, cursor, lineIndex }) {
   let i = 0
 
   // Adds the next character to the line being typed
+  // When all characters
   const typeCharacter = (doTyping) => {
     if (hasFocus) {
       const textString = prevTypedText.current + text.charAt(i)
       setTypedText(textString)
       i++
 
-      // When all characters have been typed, end typing interval
-      // and call parent func to add next line
       if (i >= text.length) {
         clearInterval(doTyping)
         setShowCursor(false)
@@ -64,7 +63,7 @@ function textLine ({ text, speed, addLine, cursor, lineIndex }) {
   )
 }
 
-textLine.propTypes = {
+TextLine.propTypes = {
   text: PropTypes.string.isRequired,
   speed: PropTypes.number,
   addLine: PropTypes.func.isRequired,
@@ -72,9 +71,4 @@ textLine.propTypes = {
   cursor: PropTypes.bool
 }
 
-textLine.defaultProps = {
-  speed: 100,
-  cursor: false
-}
-
-export default textLine
+export default TextLine
