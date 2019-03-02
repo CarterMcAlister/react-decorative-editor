@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import editorStyles from './editor-styles.module.scss'
 import TextLine from './text-line'
 
-function DecorativeEditor ({ text, darkMode, speed, cursor, maxWidth }) {
+function DecorativeEditor ({ text, darkMode, speed, cursor, style }) {
   const lines = text.split(/\r\n|\r|\n/)
   const [lineIndex, setLineIndex] = useState(0)
   const [renderedLines, setRenderedLines] = useState([])
@@ -24,7 +24,7 @@ function DecorativeEditor ({ text, darkMode, speed, cursor, maxWidth }) {
   }, [])
 
   return (
-    <div className={editorStyles.codeEditor} style={{maxWidth: maxWidth}}>
+    <div className={editorStyles.codeEditor} style={style}>
       <div className={editorStyles.codeEditorHeader} style={{background: darkMode ? '#383B4C' : '#f6f9fc'}}>
         <span className={editorStyles.codeEditorDot} />
         <span className={editorStyles.codeEditorDot} />
@@ -51,13 +51,13 @@ DecorativeEditor.propTypes = {
   darkMode: PropTypes.bool,
   speed: PropTypes.number,
   cursor: PropTypes.bool,
-  maxWidth: PropTypes.string
+  style: PropTypes.object
 }
 
 DecorativeEditor.defaultProps = {
   speed: 100,
   cursor: false,
-  maxWidth: '540px'
+  style: {maxWidth: '540px'}
 }
 
 export default DecorativeEditor

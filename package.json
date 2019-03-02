@@ -1,8 +1,8 @@
 {
   "name": "react-decorative-editor",
   "version": "1.0.0",
-  "description": "",
-  "author": "CarterMcAlister",
+  "description": "React component styled as a text editor that displays text",
+  "author": "Carter McAlister",
   "license": "MIT",
   "repository": "CarterMcAlister/react-decorative-editor",
   "main": "dist/index.js",

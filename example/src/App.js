@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 
-import ExampleComponent from 'react-decorative-editor'
+import DecorativeEditor from 'react-decorative-editor'
 
 const text = `
   const ReactDecorativeEditor = () => {
+
+    const version = '1.0.0'
 
     const framework = 'React'
 
     const frameworkVersion = '^16.8.1'
     
-    const creator = 'Carter McAlister'
+    const author = 'Carter McAlister'
 
   }
 `
@@ -17,9 +19,15 @@ const text = `
 export default class App extends Component {
   render () {
     return (
-      <div style={{background:'#413C58', height:'80vh', paddingTop:'20vh'}}>
-        <ExampleComponent text={text} cursor={true} />
+      <div className='parent'> 
+        <DecorativeEditor text={text} cursor={true} />
+
+        <div className='link-box'>
+          <a className= 'link' href='https://github.com/CarterMcAlister/react-decorative-editor'>View on GitHub</a>
+          <a className= 'link' href='https://www.npmjs.com/package/react-decorative-editor'>View on NPM</a>
+        </div>
       </div>
+      
     )
   }
 }

@@ -1,5 +1,28 @@
 body {
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+}
+
+.parent {
+  background:#413C58;
+  height:80vh;
+  padding-top:20vh;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.link-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.link {
+  background-color: #f6f9fc;
+  color: black;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  margin: 10px;
+  border-radius: .25rem;
+  min-width: 140px;
+  display: flex;
+  justify-content: center;
 }
