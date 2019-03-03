@@ -4,6 +4,8 @@
 
 [![NPM](https://img.shields.io/npm/v/react-decorative-editor.svg)](https://www.npmjs.com/package/react-decorative-editor) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+### [__Live Demo__](https://cartermcalister.github.io/react-decorative-editor/)
+
 ## Install
 
 ```bash
